@@ -84,12 +84,22 @@ git push <remote_name> --delete <branch_name>
 
 ## MERGE
 
-git checkout master
-git branch new-branch
-git checkout new-branch
-# ...develop some code...
-git add –A
- git commit –m "Some commit message"
-git checkout master
+`git checkout master`
+`git branch new-branch`
+`git checkout new-branch`
+...develop some code...
+`git add –A`
+`git commit –m "Some commit message"`
+`git checkout master`
+#### without new commit message
 git merge new-branch
+<<<<<<< HEAD
 >>>>>>> git added
+=======
+
+#### with new commit message
+git merge -no-ff new-branch -m "merging master into new-branch"
+
+
+
+>>>>>>> more git data
