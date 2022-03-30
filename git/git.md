@@ -131,10 +131,10 @@ git branch [new _branch]
 git checkout [new_branch]
 --mjenjanje brancha s seljenjem promijenjenih fajli u novi branch
 `git checkout -b [new_branch]
-stage file
-git add [ime fajle]
-stage all file from current directory downwards rekursive
-git add . 
+-- stage file
+`git add [ime fajle]`
+-- stage all file from current directory downwards rekursive
+`git add .` 
 
 
 - comitaj sve stageane fajlove
