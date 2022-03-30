@@ -1,29 +1,19 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
-### Create a new branch:
-`git checkout -b feature_branch_name`
--Edit, add and commit your files.
--Push your branch to the remote repository:
-`git push -u origin feature_branch_name`
--------------------------------------------------------------------------------------
-### brisanje brancheva:
-=======
 -Create a new branch:
 git checkout -b feature_branch_name
 =======
 ### Create a new branch:
 `git checkout -b feature_branch_name`
->>>>>>> josh malo git-a
 -Edit, add and commit your files.
 -Push your branch to the remote repository:
 `git push -u origin feature_branch_name`
--------------------------------------------------------------------------------------
-<<<<<<< HEAD
-brisanje brancheva:
->>>>>>> git added
-=======
 ### brisanje brancheva:
->>>>>>> josh malo git-a
+-Create a new branch:
+git checkout -b feature_branch_name
+-Edit, add and commit your files.
+-Push your branch to the remote repository:
+git push -u origin feature_branch_name
+-------------------------------------------------------------------------------------
+brisanje brancheva:
 git branch -d branch_name
 git branch -D branch_name
 
@@ -31,8 +21,6 @@ The -d option stands for --delete, which would delete the local branch, only if 
 The -D option stands for --delete --force, which deletes the branch regardless of its push and merge status, so be careful using this one!
 
 brisanje branch-a na remoteu
-<<<<<<< HEAD
-<<<<<<< HEAD
 `git push <remote_name> --delete <branch_name>`
 
 ## MERGE
@@ -89,11 +77,8 @@ git revert [id_commita]
 
 # REBASE
 
-=======
-git push <remote_name> --delete <branch_name>
-=======
 `git push <remote_name> --delete <branch_name>`
->>>>>>> josh malo git-a
+
 
 ## MERGE
 
@@ -104,13 +89,12 @@ git push <remote_name> --delete <branch_name>
 ...develop some code...
 
 `git add .`
+...develop some code...
+`git add –A`
 `git commit –m "Some commit message"`
 `git checkout master`
 #### without new commit message
 git merge new-branch
-<<<<<<< HEAD
->>>>>>> git added
-=======
 
 #### with new commit message
 git merge -no-ff new-branch -m "merging master into new-branch"
@@ -152,4 +136,4 @@ git revert [id_commita]
 
 # REBASE
 
->>>>>>> more git data
+
