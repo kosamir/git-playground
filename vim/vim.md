@@ -1,1 +1,3 @@
 ### VIM TODO
+
+- MOVEMENTS
