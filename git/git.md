@@ -137,3 +137,4 @@ git revert [id_commita]
 # REBASE
 
 
+- ovdje ce jednom nesto pisati o rebase-u kada ga ja shvatim cemu to sluzi
