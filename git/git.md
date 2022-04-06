@@ -5,7 +5,7 @@
 `git checkout -b feature_branch_name`
 - Edit, add and commit your files.
 - Push your branch to the remote repository:
-`git push -u origin feature_branch_name`
+`git push -u origin origin/feature_branch_name`
 
 -------------------------------------------------------------------------------------
 #### brisanje brancheva:
@@ -17,6 +17,7 @@
 
 #### brisanje branch-a na remoteu
 `git push <remote_name> --delete <branch_name>`
+`git reset --hard` - deletes all local changes and resets all
 
 ## MERGE
 
