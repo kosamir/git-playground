@@ -113,8 +113,12 @@ Numbered mark should be stored.  See |viminfo-file-marks|.
 `mk` -  mark the current position as k (any other lowercase letter will do)  
 `mK` -  mark the current position as K. Uppercase means that it is a global mark, and it will be available even if you currently have a different file opened.  
 `'k` -  jump to the position previously marked as k  
-  
-  
+`delmarks A-Z0-9` - delete all marks  
+
+### Working with files
+`Ctrl +o` - open fzf in current dir and search bellow
+`Ctrl +p` - open Gfiles in current dir and search below
+`chdir [full/path/to/wanted/dir]` - changes the search path for fzf or Gfiles
   
 ### copy paste remaps  
 `vmap <leader>y "+y`  
