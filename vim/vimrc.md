@@ -1,4 +1,20 @@
 `
+"remaping Alt key becaouse of gnome terminal
+let c='a'
+while c <= 'z'
+  exec "set <A-".c.">=\e".c
+  exec "imap \e".c." <A-".c.">"
+  let c = nr2char(1+char2nr(c))
+endw
+""end remap
+set timeout ttimeoutlen=30
+" moving lines up or down M is ALT
+nnoremap <M-DOWN> :m .+1<CR>==
+nnoremap <M-Up> :m .-2<CR>==
+inoremap <M-DOWN> <Esc>:m .+1<CR>==gi
+inoremap <M-Up> <Esc>:m .-2<CR>==gi
+vnoremap <M-DOWN> :m '>+1<CR>gv=gv
+vnoremap <M-Up> :m '<-2<CR>gv=gv
 set fileformat=unix
 " Enable syntax highlithing
 syntax on
@@ -39,8 +55,8 @@ set hlsearch incsearch
 filetype plugin on
 set omnifunc=syntaxcomplete#Complete
 "KEY omnifuncMAPPINGS
-"inoremap <expr> j ( pumvisible() )?( "\<C-n>" ):("j")
-"inoremap <expr> k ( pumvisible() )?( "\<C-p>" ):("k")
+inoremap <expr> j pumvisible() ? "\<C-N>" : "j"
+inoremap <expr> k pumvisible() ? "\<C-P>" : "k"
 
 autocmd FileType javascript,javascriptreact,typescript,typescriptreact setlocal commentstring={/*\ %s\ */}
 " mapping for emmet  
@@ -64,7 +80,7 @@ vmap <leader>p "+p
 vmap <leader>P "+P
 " search 
 vnoremap <silent> s //e<C-r>=&selection=='exclusive'?'+1':''<CR><CR>
-\:<C-u>call histdel('search',-1)<Bar>let @/=histget('search',-1)<CR>gv
+    \:<C-u>call histdel('search',-1)<Bar>let @/=histget('search',-1)<CR>gv
 omap s :normal vs<CR>
 
 " Find out current buffer's size and output it.
@@ -95,13 +111,6 @@ nnoremap <leader>a ggVG
 " delete all empty lines
 nnoremap xd :g/^\s*$/d<CR>
 "Useful because `d` overwrites the <quote> register
-nnoremap <silent> <Plug>blankUp   :<A-q>call <SID>BlankUp(v:count1)<CR>
-nnoremap <silent> <Plug>blankDown :<A-a>call <SID>BlankDown(v:count1)<CR>
-
-"nnoremap <C-l> :tabnext<CR>
-"nnoremap <C-h> :tabprevious<CR>
-vnoremap <silent> <A-j> :call <SID>MoveBlockDown()<CR>
-vnoremap <silent> <A-k> :call <SID>MoveBlockUp()<CR>
 
 " open files
 nnoremap <C-p> :GFiles <CR>
@@ -132,16 +141,8 @@ nmap <F12> :e#<CR>
 "inoremap <C-E> <C-X><C-Y>
 set scrolloff=3 " keep three lines between the cursor and the edge of the screen
 
-"remaping Alt key becaouse of gnome terminal
-let c='a'
-while c <= 'z'
-exec "set <A-".c.">=\e".c
-exec "imap \e".c." <A-".c.">"
-let c = nr2char(1+char2nr(c))
-endw
-set timeout ttimeoutlen=30
-"end remap
 
+let g:vimspector_enable_mappings = 'HUMAN'
 let g:ale_fixers = {
 \   'javascript': ['prettier'],
 \   'css': ['prettier'],
@@ -156,29 +157,30 @@ let g:ale_sign_warning = '⚠️'
 let g:ale_javascript_eslint_executable='npx eslint'
 " functions
 function! FileSize()
-let bytes = getfsize(expand('%:p'))
-if (bytes >= 1024)
-let kbytes = bytes / 1024
-endif
-if (exists('kbytes') && kbytes >= 1000)
-let mbytes = kbytes / 1000
-endif
-if bytes <= 0
-return '0'
-endif
-if (exists('mbytes'))
-return mbytes . 'MB '
-elseif (exists('kbytes'))
-return kbytes . 'KB '
-else
-return bytes . 'B '
-endif
+  let bytes = getfsize(expand('%:p'))
+  if (bytes >= 1024)
+    let kbytes = bytes / 1024
+  endif
+  if (exists('kbytes') && kbytes >= 1000)
+    let mbytes = kbytes / 1000
+  endif
+  if bytes <= 0
+    return '0'
+  endif
+  if (exists('mbytes'))
+    return mbytes . 'MB '
+  elseif (exists('kbytes'))
+    return kbytes . 'KB '
+  else
+    return bytes . 'B '
+  endif
 endfunction
+
 function! ReadOnly()
-if &readonly || !&modifiable
-return ''
-else
-return ''
+  if &readonly || !&modifiable
+    return ''
+  else
+    return ''
 endfunction
 "function! GitInfo()
 "
@@ -188,28 +190,7 @@ endfunction
 "  else
 "    return ''
 "endfunction
-function! s:BlankUp(count) abort
-put!=repeat(nr2char(10), a:count)
-']+1
-silent! call repeat#set("\<Plug>blankUp", a:count)
-endfunction
 
-function! s:BlankDown(count) abort
-put =repeat(nr2char(10), a:count)
-'[-1
-
-silent! call repeat#set("\<Plug>blankDown", a:count)
-endfunction
-
-function! s:MoveBlockDown() range
-execute a:firstline "," a:lastline "move '>+1"
-normal! gv=gv
-endfunction
-
-function! s:MoveBlockUp() range
-execute a:firstline "," a:lastline "move '<-2"
-normal! gv=gv
-endfunction
 " PLUGINS
 call plug#begin()
 Plug 'scrooloose/nerdtree'
@@ -224,15 +205,21 @@ Plug 'dense-analysis/ale'
 Plug 'easymotion/vim-easymotion'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'prettier/vim-prettier', {
-\ 'do': 'yarn install',
-\ 'branch': 'release/0.x'
-\ }
+  \ 'do': 'yarn install',
+  \ 'branch': 'release/0.x'
+  \ }
 Plug 'iamcco/coc-tailwindcss',  {'do': 'yarn install --frozen-lockfile && yarn run build'}
-Plug 'mattn/emmet-vim'
+jlug 'mattn/emmet-vim'
 Plug 'tpope/vim-commentary'
 Plug 'chiel92/vim-autoformat'
+Plug 'puremourning/vimspector'
+Plug 'prabirshrestha/async.vim'
+Plug 'prabirshrestha/vim-lsp'
+Plug 'mattn/vim-lsp-settings'
+Plug 'prabirshrestha/asyncomplete.vim'
+Plug 'prabirshrestha/asyncomplete-lsp.vim'
 call plug#end()
-
+ 
 let g:gruvbox_termcolors='256'
 colorscheme gruvbox
 " vs code bullshit
@@ -251,4 +238,17 @@ set statusline+=%#VisualColor#%{(mode()=='v')?'\ \ VISUAL\ ':''}
 set statusline+=%#VisuallineColor#%{(mode()=='V')?'\ \ VISUAL\ LINE\ ':''}
 set statusline+=%8*\ [%n]                                " buffernr
 " vs code END bullshit
-`
+" for normal mode - the word under the cursor
+nmap <Leader>di <Plug>VimspectorBalloonEval
+" for visual mode, the visually selected text
+xmap <Leader>di <Plug>VimspectorBalloonEval
+let g:lsp_settings = {
+    \ 'eclipse-jdt-ls': {
+    \     'initialization_options': {
+    \         'bundles': [
+    \             '/home/amirkos/.m2/repository/com/microsoft/java/com.microsoft.java.debug.plugin/0.36.0/com.microsoft.java.debug.plugin-0.36.0.jar'
+    \         ]
+    \     }
+    \ }
+\ }
+```
