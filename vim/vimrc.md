@@ -1,10 +1,18 @@
 `
 "remaping Alt key becaouse of gnome terminal
+" set search path per project requires .vimrc file in project_root 
+let s:project_root = finddir('.git/..', expand('%:p:h').';')
+let s:local_vimrc = join([s:project_root, '.vimrc'], '/')
+
+if filereadable(s:local_vimrc)
+exec "source " . s:local_vimrc
+endif
+
 let c='a'
 while c <= 'z'
-  exec "set <A-".c.">=\e".c
-  exec "imap \e".c." <A-".c.">"
-  let c = nr2char(1+char2nr(c))
+exec "set <A-".c.">=\e".c
+exec "imap \e".c." <A-".c.">"
+let c = nr2char(1+char2nr(c))
 endw
 ""end remap
 set timeout ttimeoutlen=30
@@ -51,13 +59,15 @@ set autowrite
 set textwidth=100
 set colorcolumn=+1
 set hlsearch incsearch
+" folds html tags
+let g:xml_syntax_folding=1
+au FileType xml setlocal foldmethod=syntax
 " AUTOCOMPLETITION
 filetype plugin on
 set omnifunc=syntaxcomplete#Complete
 "KEY omnifuncMAPPINGS
 inoremap <expr> j pumvisible() ? "\<C-N>" : "j"
 inoremap <expr> k pumvisible() ? "\<C-P>" : "k"
-
 autocmd FileType javascript,javascriptreact,typescript,typescriptreact setlocal commentstring={/*\ %s\ */}
 " mapping for emmet  
 " let g:user_emmet_leader_key=','
@@ -80,21 +90,9 @@ vmap <leader>p "+p
 vmap <leader>P "+P
 " search 
 vnoremap <silent> s //e<C-r>=&selection=='exclusive'?'+1':''<CR><CR>
-    \:<C-u>call histdel('search',-1)<Bar>let @/=histget('search',-1)<CR>gv
+\:<C-u>call histdel('search',-1)<Bar>let @/=histget('search',-1)<CR>gv
 omap s :normal vs<CR>
 
-" Find out current buffer's size and output it.
-"
-"set statusline+=%8*\ %{GitInfo()}                        " Git Branch name
-set statusline+=%8*\ %<%F\ %{ReadOnly()}\ %m\ %w\        " File+path
-set statusline+=%#warningmsg#
-"set statusline+=%{SyntasticStatuslineFlag()}             " Syntastic errors
-set statusline+=%*
-set statusline+=%9*\ %=                                  " Space
-set statusline+=%8*\ %y\                                 " FileType
-set statusline+=%7*\ %{(&fenc!=''?&fenc:&enc)}\[%{&ff}]\ " Encoding & Fileformat
-set statusline+=%8*\ %-3(%{FileSize()}%)                 " File size
-set statusline+=%0*\ %3p%%\ \ %l:\ %3c\                 " Rownumber/total (%)
 nmap <S-Enter> O<Esc>
 nmap <CR> o<Esc>
 " easier write
@@ -113,8 +111,8 @@ nnoremap xd :g/^\s*$/d<CR>
 "Useful because `d` overwrites the <quote> register
 
 " open files
-nnoremap <C-p> :GFiles <CR>
-nnoremap <C-o> :Files <CR>
+" nnoremap <C-p> :GFiles <CR>
+nnoremap <C-p> :Files <CR>
 nnoremap <leader>b :Buffers<CR>
 nnoremap <leader>s :BLines<CR>
 " kill arrow keys
@@ -129,16 +127,11 @@ nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 
 
-"nmap <leader>gd<Plug>(coc-definition)
-"nmap <leader>gr<Plug>(coc-references)
-"copy to outside buffer
-nmap <M-LEFT> :tabnext<cr>
-nmap <M-RIGHT> :tabprevious<cr>
-
+nmap <M-LEFT> :tabprevious<cr>
+nmap <M-RIGHT> :tabnext<cr>
+" java files gf
+:set includeexpr=substitute(v:fname,'\\.','/','g')
 nmap <F12> :e#<CR>
-"scrolling on insert
-"inoremap <C-Y> <C-X><C-E> 
-"inoremap <C-E> <C-X><C-Y>
 set scrolloff=3 " keep three lines between the cursor and the edge of the screen
 
 
@@ -157,40 +150,31 @@ let g:ale_sign_warning = '⚠️'
 let g:ale_javascript_eslint_executable='npx eslint'
 " functions
 function! FileSize()
-  let bytes = getfsize(expand('%:p'))
-  if (bytes >= 1024)
-    let kbytes = bytes / 1024
-  endif
-  if (exists('kbytes') && kbytes >= 1000)
-    let mbytes = kbytes / 1000
-  endif
-  if bytes <= 0
-    return '0'
-  endif
-  if (exists('mbytes'))
-    return mbytes . 'MB '
-  elseif (exists('kbytes'))
-    return kbytes . 'KB '
-  else
-    return bytes . 'B '
-  endif
+let bytes = getfsize(expand('%:p'))
+if (bytes >= 1024)
+let kbytes = bytes / 1024
+endif
+if (exists('kbytes') && kbytes >= 1000)
+let mbytes = kbytes / 1000
+endif
+if bytes <= 0
+return '0'
+endif
+if (exists('mbytes'))
+return mbytes . 'MB '
+elseif (exists('kbytes'))
+return kbytes . 'KB '
+else
+return bytes . 'B '
+endif
 endfunction
 
 function! ReadOnly()
-  if &readonly || !&modifiable
-    return ''
-  else
-    return ''
+if &readonly || !&modifiable
+return ''
+else
+return ''
 endfunction
-"function! GitInfo()
-"
-"  let git = fugitive#head()
-"  if git != ''
-"    return ' '.fugitive#head()
-"  else
-"    return ''
-"endfunction
-
 " PLUGINS
 call plug#begin()
 Plug 'scrooloose/nerdtree'
@@ -205,11 +189,11 @@ Plug 'dense-analysis/ale'
 Plug 'easymotion/vim-easymotion'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'prettier/vim-prettier', {
-  \ 'do': 'yarn install',
-  \ 'branch': 'release/0.x'
-  \ }
+\ 'do': 'yarn install',
+\ 'branch': 'release/0.x'
+\ }
 Plug 'iamcco/coc-tailwindcss',  {'do': 'yarn install --frozen-lockfile && yarn run build'}
-jlug 'mattn/emmet-vim'
+Plug 'mattn/emmet-vim'
 Plug 'tpope/vim-commentary'
 Plug 'chiel92/vim-autoformat'
 Plug 'puremourning/vimspector'
@@ -219,7 +203,7 @@ Plug 'mattn/vim-lsp-settings'
 Plug 'prabirshrestha/asyncomplete.vim'
 Plug 'prabirshrestha/asyncomplete-lsp.vim'
 call plug#end()
- 
+
 let g:gruvbox_termcolors='256'
 colorscheme gruvbox
 " vs code bullshit
@@ -238,17 +222,29 @@ set statusline+=%#VisualColor#%{(mode()=='v')?'\ \ VISUAL\ ':''}
 set statusline+=%#VisuallineColor#%{(mode()=='V')?'\ \ VISUAL\ LINE\ ':''}
 set statusline+=%8*\ [%n]                                " buffernr
 " vs code END bullshit
+" Find out current buffer's size and output it.
+"
+" set statusline+=%8*\ %{GitInfo()}                        " Git Branch name
+set statusline+=%8*\ %<%F\ %{ReadOnly()}\ %m\ %w\        " File+path
+set statusline+=%#warningmsg#
+"set statusline+=%{SyntasticStatuslineFlag()}             " Syntastic errors
+set statusline+=%*
+set statusline+=%9*\ %=                                  " Space
+set statusline+=%8*\ %y\                                 " FileType
+set statusline+=%7*\ %{(&fenc!=''?&fenc:&enc)}\[%{&ff}]\ " Encoding & Fileformat
+set statusline+=%8*\ %-3(%{FileSize()}%)                 " File size
+set statusline+=%0*\ %3p%%\ \ %l:\ %3c\                 " Rownumber/total (%)
 " for normal mode - the word under the cursor
 nmap <Leader>di <Plug>VimspectorBalloonEval
 " for visual mode, the visually selected text
 xmap <Leader>di <Plug>VimspectorBalloonEval
 let g:lsp_settings = {
-    \ 'eclipse-jdt-ls': {
-    \     'initialization_options': {
-    \         'bundles': [
-    \             '/home/amirkos/.m2/repository/com/microsoft/java/com.microsoft.java.debug.plugin/0.36.0/com.microsoft.java.debug.plugin-0.36.0.jar'
-    \         ]
-    \     }
-    \ }
+\ 'eclipse-jdt-ls': {
+\     'initialization_options': {
+\         'bundles': [
+\             '/home/amirkos/.m2/repository/com/microsoft/java/com.microsoft.java.debug.plugin/0.36.0/com.microsoft.java.debug.plugin-0.36.0.jar'
+\         ]
+\     }
 \ }
-```
+\ }
+`
