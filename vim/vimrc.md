@@ -1,4 +1,5 @@
-`
+````
+"remaping Alt key becaouse of gnome terminal
 " set search path per project requires .vimrc file in project_root 
 let s:project_root = finddir('.git/..', expand('%:p:h').';')
 let s:local_vimrc = join([s:project_root, '.vimrc'], '/')
@@ -7,7 +8,6 @@ if filereadable(s:local_vimrc)
 exec "source " . s:local_vimrc
 endif
 
-"remaping Alt key becaouse of gnome terminal
 let c='a'
 while c <= 'z'
 exec "set <A-".c.">=\e".c
@@ -249,4 +249,4 @@ let g:lsp_settings = {
 \     }
 \ }
 \ }
-`
+````
