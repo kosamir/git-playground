@@ -1,5 +1,4 @@
 `
-"remaping Alt key becaouse of gnome terminal
 " set search path per project requires .vimrc file in project_root 
 let s:project_root = finddir('.git/..', expand('%:p:h').';')
 let s:local_vimrc = join([s:project_root, '.vimrc'], '/')
@@ -8,6 +7,7 @@ if filereadable(s:local_vimrc)
 exec "source " . s:local_vimrc
 endif
 
+"remaping Alt key becaouse of gnome terminal
 let c='a'
 while c <= 'z'
 exec "set <A-".c.">=\e".c
@@ -101,6 +101,7 @@ nmap <leader>w :w!<cr>
 nmap <leader>q :q<cr>
 " silence search highlighting
 nnoremap <leader>hh :nohlsearch<Bar>:echo<CR>
+"This unsets the "last search pattern" register by hitting return
 "paste from outside buffer
 nnoremap <leader>p :set paste<CR>"+p:set nopaste<CR>
 vnoremap <leader>p <Esc>:set paste<CR>gv"+p:set nopaste<CR>
@@ -111,8 +112,8 @@ nnoremap xd :g/^\s*$/d<CR>
 "Useful because `d` overwrites the <quote> register
 
 " open files
-" nnoremap <C-p> :GFiles <CR>
-nnoremap <C-p> :Files <CR>
+nnoremap đ :Files <CR>
+nnoremap š :GFiles <CR>
 nnoremap <leader>b :Buffers<CR>
 nnoremap <leader>s :BLines<CR>
 " kill arrow keys
@@ -131,7 +132,7 @@ nmap <M-LEFT> :tabprevious<cr>
 nmap <M-RIGHT> :tabnext<cr>
 " java files gf
 :set includeexpr=substitute(v:fname,'\\.','/','g')
-nmap <F12> :e#<CR>
+"nmap <F12> :e#<CR>
 set scrolloff=3 " keep three lines between the cursor and the edge of the screen
 
 
@@ -202,6 +203,7 @@ Plug 'prabirshrestha/vim-lsp'
 Plug 'mattn/vim-lsp-settings'
 Plug 'prabirshrestha/asyncomplete.vim'
 Plug 'prabirshrestha/asyncomplete-lsp.vim'
+Plug 'tpope/vim-fugitive'
 call plug#end()
 
 let g:gruvbox_termcolors='256'
