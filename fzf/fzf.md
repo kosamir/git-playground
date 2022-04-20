@@ -11,6 +11,11 @@
   -`.sh$` - finds all  files that ends with .sh
   -`^math`- finds all files that starts with `math`
 
+### SEARCHING
+- `fzf`
+  -`.sh$` - finds all  files that ends with .sh
+  -`^math`- finds all files that starts with `math`
+
 ### Fuzzy completion for bash and zsh  
 - COMMAND [DIRECTORY/][FUZZY_PATTERN]**<TAB>
 
