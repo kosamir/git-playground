@@ -1,9 +1,4 @@
 # VIM     
-- vim the mos kull text editor
-- vim the mos kull text editor
-- vim the mos kull text editor
-- vim the mos kull text editor
-- vim the mos kull text editor
 ### VIM COMMENTARY  
 `gcc` - comment out a line    
 `gc` - in visual mode comments out selection    
@@ -28,10 +23,6 @@
     
 ### power of g    
 `:[range]g/pattern/cmd`      
-- This acts on the specified [range] (default whole file),       
-  by executing the Ex command cmd for each line matching pattern       
-  (an Ex command is one starting with a colon such as :d for delete).      
-  Before executing cmd, "." is set to the current line.      
 - This acts on the specified [range] (default whole file),       
   by executing the Ex command cmd for each line matching pattern       
   (an Ex command is one starting with a colon such as :d for delete).      
