@@ -57,5 +57,5 @@ undoing changes:  `git revert [id_commita]`
   
 # REBASE  
   
-  
+ ovo je testing da vidim kako radi merganje 
 - https://www.javatpoint.com/git-rebase  
