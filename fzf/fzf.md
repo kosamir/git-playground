@@ -35,8 +35,6 @@
 
 - Directories under ~/github that match `fzf`
 `cd ~/github/fzf**<TAB>`
-- Directories under ~/github that match `fzf`
-`cd ~/github/fzf**<TAB>`
 
 ### Enviroment variables
 `unset **<TAB>`
