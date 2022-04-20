@@ -28,6 +28,10 @@
   by executing the Ex command cmd for each line matching pattern       
   (an Ex command is one starting with a colon such as :d for delete).      
   Before executing cmd, "." is set to the current line.      
+- This acts on the specified [range] (default whole file),       
+  by executing the Ex command cmd for each line matching pattern       
+  (an Ex command is one starting with a colon such as :d for delete).      
+  Before executing cmd, "." is set to the current line.      
 `:g/pattern/d`- deletes all empty lines      
 `:g/pattern/t$`- copy matches to end of the file      
 `:g/pattern/m$`- move matches to end of the file      
