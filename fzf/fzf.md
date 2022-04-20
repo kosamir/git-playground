@@ -1,4 +1,5 @@
 # FUZZY FINDER 
+# FUZZY FINDER 
 - `cd ** <TAB>` - directory assist
 - `CTRL+R` - command history
 - `kill <TAB>` - kill with fzf
