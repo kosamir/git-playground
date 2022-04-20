@@ -4,8 +4,7 @@
 `gcc` - comment out a line    
 `gc` - in visual mode comments out selection    
 <!-- this is a test -->  
-  
-<!-- this is a test -->  
+ <!-- tu sam dodao nesto da vidim jel stima -->  
 <!-- this is a test -->  
 <!-- this is a test -->  
 ### VIM SURROUND    
