@@ -10,7 +10,7 @@
   `ysiw'` - surronund current word with '      
   `ysiW'` - surronund current WORD with '      
   `ci"` - change inside "      
-  `yi"` - yarn inside "    
+  `yi"` - yank inside "    
   `vi"` Select everything inside ". It also works with parenthesis, brackets, tags…      
   `di"` Delete everything inside ". Same as before.      
   `da"` Delete everything inside ", including the surrounding "      
