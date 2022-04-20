@@ -1,16 +1,10 @@
 # FUZZY FINDER 
-# FUZZY FINDER 
 - `cd ** <TAB>` - directory assist
 - `CTRL+R` - command history
 - `kill <TAB>` - kill with fzf
 - `vim -o 'fzf'` - open file in fzf
 - `ssh ** <TAB>` - list from .ssh/config file
 - `fzf | xargs ls -l`- Print info for each selected file
-
-### SEARCHING
-- `fzf`
-  -`.sh$` - finds all  files that ends with .sh
-  -`^math`- finds all files that starts with `math`
 
 ### SEARCHING
 - `fzf`
