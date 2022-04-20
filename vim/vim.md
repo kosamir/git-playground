@@ -1,9 +1,9 @@
 # VIM     
-  
+<!-- this is a comment for merging in test branch -->  
 ### VIM COMMENTARY  
 `gcc` - comment out a line    
 `gc` - in visual mode comments out selection    
-
+<!-- ovo je jos jedan komentar -->
 ### VIM SURROUND    
 - Edition magic      
   `ysiw'` - surronund current word with '      
