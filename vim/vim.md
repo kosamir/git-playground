@@ -1,5 +1,5 @@
 # VIM     
-  
+<!-- this is a comment for merging in test branch -->  
 ### VIM COMMENTARY  
 `gcc` - comment out a line    
 `gc` - in visual mode comments out selection    
