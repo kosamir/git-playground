@@ -38,6 +38,11 @@
 `export **<TAB>`
 `unalias **<TAB>`
 
+### Enviroment variables
+`unset **<TAB>`
+`export **<TAB>`
+`unalias **<TAB>`
+
 ### BASHRC
 
 ```
