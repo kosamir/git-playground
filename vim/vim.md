@@ -1,5 +1,5 @@
 # VIM     
-<!-- this is a comment for merging in test branch -->  
+- vim the mos kull text editor
 ### VIM COMMENTARY  
 `gcc` - comment out a line    
 `gc` - in visual mode comments out selection    
