@@ -7,7 +7,6 @@
 - Push your branch to the remote repository:  
 `git push -u origin origin/feature_branch_name`  
   
-ovo je merge test na masteru da vidim kako radi vimdiff
 -------------------------------------------------------------------------------------  
 #### brisanje brancheva:  
 `git branch -d branch_name`  
@@ -58,5 +57,4 @@ undoing changes:  `git revert [id_commita]`
   
 # REBASE  
   
- ovo je testing da vidim kako radi merganje 
 - https://www.javatpoint.com/git-rebase  
