@@ -7,6 +7,7 @@
 - Push your branch to the remote repository:  
 `git push -u origin origin/feature_branch_name`  
   
+ovo je merge test na masteru da vidim kako radi vimdiff
 -------------------------------------------------------------------------------------  
 #### brisanje brancheva:  
 `git branch -d branch_name`  

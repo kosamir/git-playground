@@ -392,3 +392,4 @@ let g:ale_sign_warning = '⚠️'
 let g:ale_javascript_eslint_executable='npx eslint'    
     
 ```    
+ovo sam dodao iza svega na masteru pa da vidim merge
