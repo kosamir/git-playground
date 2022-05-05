@@ -1,12 +1,8 @@
-````
+```
 "remaping Alt key becaouse of gnome terminal
 " set search path per project requires .vimrc file in project_root 
-let s:project_root = finddir('.git/..', expand('%:p:h').';')
-let s:local_vimrc = join([s:project_root, '.vimrc'], '/')
-
-if filereadable(s:local_vimrc)
-exec "source " . s:local_vimrc
-endif
+" set nocompatible
+" set t_RV=
 
 let c='a'
 while c <= 'z'
@@ -14,13 +10,17 @@ exec "set <A-".c.">=\e".c
 exec "imap \e".c." <A-".c.">"
 let c = nr2char(1+char2nr(c))
 endw
+"u
 ""end remap
-set timeout ttimeoutlen=30
+set ttimeout
+set ttimeoutlen=100
+set timeoutlen=500
+set esckeys
 " moving lines up or down M is ALT
 nnoremap <M-DOWN> :m .+1<CR>==
 nnoremap <M-Up> :m .-2<CR>==
-inoremap <M-DOWN> <Esc>:m .+1<CR>==gi
 inoremap <M-Up> <Esc>:m .-2<CR>==gi
+inoremap <M-DOWN> <Esc>:m .+1<CR>==gi
 vnoremap <M-DOWN> :m '>+1<CR>gv=gv
 vnoremap <M-Up> :m '<-2<CR>gv=gv
 set fileformat=unix
@@ -34,7 +34,6 @@ set number
 " show line numbers
 set incsearch
 set relativenumber
-set nohlsearch
 set nowrap
 set showcmd
 "Indentation settings for using 4 spaces instead of tabs.
@@ -50,13 +49,14 @@ set confirm
 " Use visual bell instead of beeping when doing something wrong
 set visualbell
 " Quickly time out on keycodes, but never time out on mappings
-set notimeout ttimeout ttimeoutlen=200
+" set notimeout ttimeout ttimeoutlen=200
 " Use <F11> to toggle between 'paste' and 'nopaste'
 set pastetoggle=<F11>
 set backspace=2
 set nobackup
 set autowrite
 set textwidth=100
+set wrap linebreak
 set colorcolumn=+1
 set hlsearch incsearch
 " folds html tags
@@ -65,6 +65,7 @@ au FileType xml setlocal foldmethod=syntax
 " AUTOCOMPLETITION
 filetype plugin on
 set omnifunc=syntaxcomplete#Complete
+set completeopt=longest,menuone
 "KEY omnifuncMAPPINGS
 inoremap <expr> j pumvisible() ? "\<C-N>" : "j"
 inoremap <expr> k pumvisible() ? "\<C-P>" : "k"
@@ -89,9 +90,12 @@ nmap <leader>P "+P
 vmap <leader>p "+p
 vmap <leader>P "+P
 " search 
-vnoremap <silent> s //e<C-r>=&selection=='exclusive'?'+1':''<CR><CR>
-\:<C-u>call histdel('search',-1)<Bar>let @/=histget('search',-1)<CR>gv
+vnoremap // y/\V<C-R>=escape(@",'/\')<CR><CR>
+command -nargs=1 Sch noautocmd vimgrep /<args>/gj `git ls-files` | cw
 omap s :normal vs<CR>
+" vimgrep first next occurance
+nnoremap <leader>n :cnext<CR>
+nnoremap <leader>m :cprevious<CR>
 
 nmap <S-Enter> O<Esc>
 nmap <CR> o<Esc>
@@ -103,8 +107,8 @@ nmap <leader>q :q<cr>
 nnoremap <leader>hh :nohlsearch<Bar>:echo<CR>
 "This unsets the "last search pattern" register by hitting return
 "paste from outside buffer
-nnoremap <leader>p :set paste<CR>"+p:set nopaste<CR>
-vnoremap <leader>p <Esc>:set paste<CR>gv"+p:set nopaste<CR>
+" nnoremap <leader>p :set paste<CR>"+p:set nopaste<CR>
+" vnoremap <leader>p <Esc>:set paste<CR>gv"+p:set nopaste<CR>
 "select all
 nnoremap <leader>a ggVG
 " delete all empty lines
@@ -121,6 +125,8 @@ noremap <silent> <Up>    <Nop>
 noremap <silent> <Down>  <Nop>
 noremap <silent> <Left>  <Nop>
 noremap <silent> <Right> <Nop>
+noremap <silent> <C-Left>  <Nop>
+noremap <silent> <C-Right> <Nop>
 " moving between windows
 nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
@@ -128,8 +134,8 @@ nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 
 
-nmap <M-LEFT> :tabprevious<cr>
-nmap <M-RIGHT> :tabnext<cr>
+nmap <C-LEFT> :tabprevious<cr>
+nmap <C-RIGHT> :tabnext<cr>
 " java files gf
 :set includeexpr=substitute(v:fname,'\\.','/','g')
 "nmap <F12> :e#<CR>
@@ -143,7 +149,6 @@ let g:ale_fixers = {
 \}
 let g:ale_lint_on_enter=0
 let g:ale_lint_on_text_changed='never'
-"let g:ale_fixers['javascript'] = ['eslint']
 " Fix files automatically on save
 let g:ale_fix_on_save = 1
 let g:ale_sign_error = '❌'
@@ -176,6 +181,19 @@ return ''
 else
 return ''
 endfunction
+
+function! GitBranch()
+return system("git branch --show-current")
+" return system("git rev-parse --abbrev-ref HEAD 2>/dev/null | tr -d '\n'")
+endfunction
+function! CommitHash()
+return system ("git rev-parse --short HEAD")
+endfunction
+function! StatuslineGit()
+let l:branchname = GitBranch()
+let l:commitsha = CommitHash()
+return strlen(l:branchname) > 0?'  '.l:branchname.' '.l:commitsha.' ':''
+endfunction
 " PLUGINS
 call plug#begin()
 Plug 'scrooloose/nerdtree'
@@ -204,6 +222,9 @@ Plug 'mattn/vim-lsp-settings'
 Plug 'prabirshrestha/asyncomplete.vim'
 Plug 'prabirshrestha/asyncomplete-lsp.vim'
 Plug 'tpope/vim-fugitive'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'ryanoasis/vim-devicons'
 call plug#end()
 
 let g:gruvbox_termcolors='256'
@@ -226,7 +247,7 @@ set statusline+=%8*\ [%n]                                " buffernr
 " vs code END bullshit
 " Find out current buffer's size and output it.
 "
-" set statusline+=%8*\ %{GitInfo()}                        " Git Branch name
+" set statusline+=%8*\ %{StatuslineGit()}                        " Git Branch name
 set statusline+=%8*\ %<%F\ %{ReadOnly()}\ %m\ %w\        " File+path
 set statusline+=%#warningmsg#
 "set statusline+=%{SyntasticStatuslineFlag()}             " Syntastic errors
@@ -249,4 +270,14 @@ let g:lsp_settings = {
 \     }
 \ }
 \ }
-````
+let $FZF_DEFAULT_OPTS="--bind \"ctrl-n:preview-down,ctrl-p:preview-up\""
+set exrc
+set secure
+set termguicolors
+let s:project_root = finddir('.git/..', expand('%:p:h').';')
+let s:local_vimrc = join([s:project_root, '.vimrc'], '/')
+
+if filereadable(s:local_vimrc)
+exec "source " . s:local_vimrc
+endif
+```
