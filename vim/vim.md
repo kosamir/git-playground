@@ -123,11 +123,13 @@ Numbered mark should be stored.  See |viminfo-file-marks|.
 `:Files` - open fzf in current dir and search bellow  
   - `Crtl + t` - opens file in new tab
   - `Ctrl + v` - opens file in new vertical split
-  - `Ctrl + x` - opens file in new horizontal split
+  - `Ctrl + x` - opens file in new horizontal split  
+
 `:GFiles` - open Gfiles in current dir and search below  
   - `Crtl + t` - opens file in new tab
   - `Ctrl + v` - opens file in new vertical split
-  - `Ctrl + x` - opens file in new horizontal split
+  - `Ctrl + x` - opens file in new horizontal split  
+
 `chdir [full/path/to/wanted/dir]` - changes the search path for fzf or Gfiles  
     
 ### copy paste remaps    
