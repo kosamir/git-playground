@@ -3,6 +3,8 @@
 `gcc` - comment out a line    
 `gc` - in visual mode comments out selection    
 <!-- ovo je jos jedan komentar -->
+### VIM GIT 
+[FUGITIVE](https://dzx.fr/blog/introduction-to-vim-fugitive/)
 ### VIM SURROUND    
 - Edition magic      
   `ysiw'` - surronund current word with '      
