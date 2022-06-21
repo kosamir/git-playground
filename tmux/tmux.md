@@ -2,7 +2,10 @@
 `tmux ls`
 ### Startin new session 
 - `tmux new`
+
+-moj glupi komentar
 - `tmux new`
+-moj glupi komentar
 - `tmux new -s [session_name]`
 
 ### Rename session
@@ -10,6 +13,7 @@
 
 ### Usefull commands
 - `<C-a> |` - vertical split screen
+-moj glupi komentar
 - `<C-a> left/right/up/down` - navigating panes
 - `<C-d>` - closing panes
 - `<C-a> c` - open new window
