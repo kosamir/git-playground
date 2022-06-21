@@ -9,10 +9,6 @@
 
 ### Usefull commands
 - `<C-a> |` - vertical split screen
-- `<C-a> |` - vertical split screen
-- `<C-a> |` - vertical split screen
-- `<C-a> |` - vertical split screen
-- `<C-a> -` - horizontal split screen
 - `<C-a> left/right/up/down` - navigating panes
 - `<C-d>` - closing panes
 - `<C-a> c` - open new window
