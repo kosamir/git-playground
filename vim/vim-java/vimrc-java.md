@@ -1,5 +1,4 @@
-
-`
+```
 set path+=/home/amirkos/git/pravila/rizik-servisi/**
 let g:ale_java_javac_executable = "javac -cp ~/.m2/repository/org/projectlombok/lombok/1.18.8/lombok-1.18.8.jar"
 nnoremap <C-f>  :CocCommand editor.action.formatDocument <CR>
@@ -28,4 +27,4 @@ endfunction
 
 autocmd CursorHoldI * :call <SID>show_hover_doc()
 autocmd CursorHold * :call <SID>show_hover_doc()
-`
+```
