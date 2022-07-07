@@ -22,3 +22,9 @@
 - `C-b z`: make a pane go full screen. Hit C-b z again to shrink it back to its previous size
 - `C-b C-<arrow key>`: Resize pane in direction of <arrow key>4
 - `C-b ,`: Rename the current window
+
+### Restore sessions
+- `tmux`
+- `Ctrl+a Ctrl+s` - save tmux session
+- `Ctrl+a Ctrl+r` - restore last saved session
+- `Ctrl+a s` - list all saved sessions

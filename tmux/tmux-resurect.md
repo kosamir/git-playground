@@ -13,6 +13,12 @@
 `tmux-resurrect` will now restore vim and neovim sessions if `Session.vim` file
 is present.
 
+### Restore sessions
+- `tmux`
+- `Ctrl+a Ctrl+s` - save tmux session
+- `Ctrl+a Ctrl+r` - restore last saved session
+- `Ctrl+a s` - list all saved sessions
+
 > If you're using the vim binary provided by MacVim.app then you'll need to set `@resurrect-processes`, for example:
 > ```
 > set -g @resurrect-processes '~Vim -> vim'
