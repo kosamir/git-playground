@@ -3,15 +3,16 @@
 =======  
 ### Create a new branch:  
 `git checkout -b feature_branch_name`  
+
 - Edit, add and commit your files.  
 - Push your branch to the remote repository:  
+
 `git push -u origin origin/feature_branch_name`  
-  
 -------------------------------------------------------------------------------------  
 #### brisanje brancheva:  
 `git branch -d branch_name`  
 `git branch -D branch_name`  
-  
+
 - The -d option stands for --delete, which would delete the local branch, only if you have already pushed and merged it with your remote branches.  
 - The -D option stands for --delete --force, which deletes the branch regardless of its push and merge status, so be careful using this one!  
   
@@ -55,6 +56,22 @@ brisanje grane na remote-u: `git push <remote_name> --delete <branch_name>`
 undoing changes:  `git revert [id_commita]`    
   
   
+# REWRITING HISTORY OF GIT I.E SOFT RESET
+- move head 20 commits in the past
+`git reset --soft HEAD@{20}` 
+- stage all 20 files
+`git add .`
+- commit all files wiht message
+`git commit -m "this is new commit message"`
+- push to remote with force to overwrite history
+`git push --force`
+- check the git log
+`git log --online`
+- tihs is debilana
+
+- we see that commits have been merged in one commit
+- IMPORTANT DO NOT DO THAT ON BRANCH THAT HAS BEEN PUSHED ON REMOTE AND SOMEBODY MAY HAVE CHECK IT OUT
+
 # REBASE  
   
 - https://www.javatpoint.com/git-rebase  
