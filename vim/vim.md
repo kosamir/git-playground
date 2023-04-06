@@ -10,7 +10,7 @@
   `ysiw'` - surronund current word with '      
   `ysiW'` - surronund current WORD with '      
   `ci"` - change inside "      
-  `cit` - change `neki tekst` <div>neki tekst</div>      
+  `cit` - change `neki tekst` u `<div>neki tekst</div>`      
   `ci<` - change inside html tag between `<>` <div style="pointer-events:none">      
   `yi"` - yank inside "    
   `vi"` Select everything inside ". It also works with parenthesis, brackets, tags…      
