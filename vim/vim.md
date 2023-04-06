@@ -3,6 +3,12 @@
 `gcc` - comment out a line    
 `gc` - in visual mode comments out selection    
 <!-- ovo je jos jedan komentar -->
+### VIM SCROLLING
+  `zz` Scroll the current line to the center of the window      
+  `zt` Scroll the current line to the top of the window      
+  `zb` Scroll the current line to the bottom of the window      
+  `Ctrl + e` Scroll down without moving cursor
+  `Ctrl + y` Scroll up without moving cursor
 ### VIM GIT 
 [FUGITIVE](https://dzx.fr/blog/introduction-to-vim-fugitive/)
 ### VIM SURROUND    
@@ -18,9 +24,6 @@
   `da"` Delete everything inside ", including the surrounding "      
   `CTRL+v` Start visual mode, selecting columns      
    =<next position> Indent      
-  `zz` Scroll the current line to the center of the window      
-  `zt` Scroll the current line to the top of the window      
-  `zb` Scroll the current line to the bottom of the window      
   `cs"'` Change the surrounding double quotes by simple quotes (surround.vim is required)      
   `/\csearchString` Perform a case insensitive search      
   `/\CsearchString` Perform a case sensitive search      
