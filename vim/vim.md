@@ -165,5 +165,17 @@ Numbered mark should be stored.  See |viminfo-file-marks|.
 ### VIM FZF  
 `Ctrl+o [file_name] Ctrl+t` - open file in new tab  
   
-### My .vimrc    
-```    
+### FOLDING HTML 
+`.vim/after/ftplugin/html.vim`
+
+```
+setlocal foldmethod=syntax
+```
+
+`.vim/after/syntax/html/html.vim`
+
+```
+syntax region htmlFold
+start="<\z(p\|h\d\|i\?frame\|table\|colgroup\|thead\|tfoot\|tbody\|t[dhr]\|pre\|[diou]l\|li\|span\|div\|head\|script\|style\|blockquote\|form\)\%(\_s*\_[^/]\?>\|\_s\_[^>]*\_[^>/]>\)"
+end="</\z1\_s*>" fold transparent keepend extend containedin=htmlHead,htmlH\d
+```
