@@ -84,7 +84,7 @@ let g:lsp_settings = {
 \ }
 \ }
 `
-
+ 
 The DAP server will not start automatically when we want to do some debugging. Therefor we need to start it from within Vim by notifying the eclipse-jdt-ls to do so:
 
 `:call lsp#send_request('eclipse-jdt-ls', {'method': 'workspace/executeCommand', 'params': {'command': 'vscode.java.startDebugSession'}, 'on_notification': function('lsp#utils#error')})`
