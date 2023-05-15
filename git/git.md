@@ -1,6 +1,7 @@
 ### Create a new branch:  
 `git checkout -b feature_branch_name`  
 =======  
+=======  
 ### Create a new branch:  
 `git checkout -b feature_branch_name`  
 

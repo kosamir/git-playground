@@ -47,20 +47,20 @@
 `:.,+3m$-1` - current line through current+3 are moved to the lastLine-1 (i.e. next to last)      
 `:g/pattern/normal @q`- Run a macro on matching lines (example assuming a macro recorded as 'q'):      
 ### Quickfix list  
-`:copen` - Open the quickfix list window.
-`:ccl` or :cclose - Close the quickfix list window.
-`:cnext` or :cn - Go to the next item on the list.
-`:cprev` or :cp - Go to the previous item on the list.
-`:cfirst` - Go to the first item on the list.
-`:clast` - Go to the last item on the list.
-`:cc <n>` - Go to the nth item.
+`:copen` - Open the quickfix list window.    
+`:ccl` or :cclose - Close the quickfix list window.  
+`:cnext` or :cn - Go to the next item on the list.    
+`:cprev` or :cp - Go to the previous item on the list.  
+`:cfirst` - Go to the first item on the list.  
+`:clast` - Go to the last item on the list.  
+`:cc <n>` - Go to the nth item.  
 ### Location List  
-`:lopen` - Open the location list window.
-`:lcl` or :lclose - Close the location list window.
-`:lnext` - Go to the next item on the list.
-`:lprev` - Go to the previous item on the list.
-`:lfirst` - Go to the first item on the list.
-`:llast` - Go to the last item on the list.
+`:lopen` - Open the location list window.  
+`:lcl` or :lclose - Close the location list window.  
+`:lnext` - Go to the next item on the list.  
+`:lprev` - Go to the previous item on the list.  
+`:lfirst` - Go to the first item on the list.  
+`:llast` - Go to the last item on the list.  
 `:ll <n>` - Go to the nth item.
 ### Macro  
 `:5,10norm! @a` - Execute the macro stored in register a on lines 5 through 10.  
