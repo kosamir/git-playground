@@ -139,3 +139,63 @@
 - LG monitor
 `xrandr --output DP-1.2 --mode 3840x2160 --pos 3840x0`  
 
+### Troubleshooting
+
+ uglavnom odes u tty(ctrl + alt + F1 ili neki drug F) logiras se i opalis:
+
+    `
+        sudo rm /etc/X11/xorg.conf
+        systemctl restart gdm
+    `
+
+To mu je pravi elektrosok.. stilta se do kraja 
+
+Inace pozicije monitora drzi u fajlu `./config/montors.xml` a taj file se azurira svaki puta kad nesto po monitorima (rezolucije, pozicije itd) drkas
+
+
+ Uglavnom
+shema je iz tog `monitor.xml-a` rekonstuirat shell skriptu koja ce ti se izvrtiti prilikom login-a i namjestiti ti monitore zavisno o tome gdje si se prikopcao..
+Primjer moje shell skripte koja namjesta monitore:
+`
+
+#!/bin/bash
+#
+# Monitors adjustment script, if at home i have 3 montors
+# if at work i ussualy have 2 monitors currently on DISPLAY PORT 
+# if all else fails i have only laptop
+#
+COUNT=`xrandr | grep '\<connected\>' | wc -l`
+DISPLAYS=`xrandr | grep '\<connected\>' | awk ' { print ($1)}'` 
+IS_DISPLAY_PORT=0
+# check if is no display port, could be done better
+for f in ${DISPLAYS[@]} 
+do
+    if [ $f == "DP-0" ]; then
+        IS_DISPLAY_PORT=1
+    fi
+done
+
+if [ $COUNT -eq '3' ]
+then
+    if [ $IS_DISPLAY_PORT -eq "1" ]; then
+        xrandr --output DP-1 --mode 4096x2304 --pos 0x0
+        xrandr --output eDP-1 --mode 3840x2160 --pos 256x2304
+    else
+        echo 'setting home monitors'
+        xrandr --output HDMI-0 --mode 2560x1440 --pos 0x0 --scale 1.0x1.0 
+        xrandr --output DP-1.2 --mode 2560x1440 --pos 2560x0 --scale 1.0x1.0
+        xrandr --output eDP-1-1 --primary --mode 1920x1080 --pos 1300x1440 --scale 1.0x1.0 
+        # nvidia-settings --assign CurrentMetaMode="DPY-3: nvidia-auto-select @3840x2160 +0+0 {ViewPortIn=3840x2160, ViewPortOut=2560x1440+0+0}, DPY-0:nvidia-auto-select @3840x2160 +3840+0 {ViewPortIn=3840x2160, ViewPortOut=3840x2160+0+0}"
+        # xrandr --output eDP-1-1 --mode 3840x2160 --pos 1900x2160
+    fi
+elif [ $COUNT -eq "1" ]; then
+    echo 'setting primary single monitor'
+    xrandr --output eDP-1 --primary --mode 3840x2160 --pos 0x0
+elif [ $COUNT -eq "2" ]; then
+    echo 'setting work monitors'
+    xrandr --output DP-0 --mode 2560x1440 --pos 0x0 --scale 1.5x1.5
+    xrandr --output eDP-1 --primary --mode 3840x2160 --pos 0x2160
+fi
+
+`        
+ovo `--output` nazivlje... dobijes kad opalis xrandr komadnu u terminalu..
