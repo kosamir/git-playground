@@ -10,24 +10,26 @@
     
 Turning it into a service    
 Let’s create a file called /etc/systemd/system/rot13.service:    
-`    
-[Unit]    
-Description=ROT13 demo service    
-After=network.target    
-StartLimitIntervalSec=0    
-[Service]    
-Type=simple    
-Restart=always    
-RestartSec=1    
-User=centos  
-ExecStart=/usr/bin/env php /path/to/server.php  
-  
-[Install]  
-WantedBy=multi-user.target  
-`  
+<pre>
+    [Unit]    
+    Description=ROT13 demo service    
+    After=network.target    
+    StartLimitIntervalSec=0    
+    [Service]    
+    Type=simple    
+    Restart=always    
+    RestartSec=1    
+    User=centos  
+    ExecStart=/usr/bin/env php /path/to/server.php  
+      
+    [Install]  
+    WantedBy=multi-user.target  
+</pre>
+
 You’ll need to:  
 - set your actual username after User=  
 - set the proper path to your script in ExecStart=  
+
 That’s it. We can now start the service:  
  `systemctl start rot13`  
 And automatically get it to start on boot:  
@@ -36,20 +38,22 @@ And automatically get it to start on boot:
 `.config/autostart/` - tu se nalaze skripte koje se pokrecu prilikom startup-a:  
 Call powertop auto-tune automatically at boot time  
 1. On systems using systemd as startup manager (like Ubuntu) install it as a service:  
-```  
-cat << EOF | sudo tee /etc/systemd/system/jackd.service  
-[Unit]  
-Description=PowerTOP auto tune  
-  
-[Service]  
-Type=idle  
-Environment="TERM=dunomb"  
-ExecStart=jack_control start  
-  
-[Install]  
-WantedBy=multi-user.target  
-EOF  
-```  
+
+<pre>
+    cat << EOF | sudo tee /etc/systemd/system/jackd.service  
+    [Unit]  
+    Description=PowerTOP auto tune  
+      
+    [Service]  
+    Type=idle  
+    Environment="TERM=dunomb"  
+    ExecStart=jack_control start  
+      
+    [Install]  
+    WantedBy=multi-user.target  
+    EOF  
+</pre>
+
 `systemctl daemon-reload`  
 `systemctl enable powertop.service`  
   
