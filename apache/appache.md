@@ -11,17 +11,15 @@ sudo nano /etc/apache2/sites-available/example.com.conf
 sudo vim /etc/httpd/conf.d/example.com.conf 
 Add the following content.
 
-```
-<VirtualHost *:80>
-      ServerName example.com
-      ServerAlias www.example.com
-      ServerAdmin webmaster@example.com
-
-      ProxyPreserveHost On
-      ProxyPass /some_path http://localhost:3000/
-      ProxyPassReverse /some_path http://localhost:3000/
-
-      ErrorLog /var/log/apache2/error.log
-      CustomLog /var/log/apache2/access.log combined
-</VirtualHost>
-```
+    <VirtualHost *:80>
+    ServerName example.com
+    ServerAlias www.example.com
+    ServerAdmin webmaster@example.com
+    
+    ProxyPreserveHost On
+    ProxyPass /some_path http://localhost:3000/
+    ProxyPassReverse /some_path http://localhost:3000/
+    
+    ErrorLog /var/log/apache2/error.log
+    CustomLog /var/log/apache2/access.log combined
+    </VirtualHost>
