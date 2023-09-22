@@ -140,6 +140,18 @@ Numbered mark should be stored.  See |viminfo-file-marks|.
 `'k` -  jump to the position previously marked as k    
 `delmarks A-Z0-9` - delete all marks    
 
+### Search and replace in all buffers
+<pre>
+    :vimgrep /SearchTerm/ *.tsx
+    :vimgrep /SearchTerm/ *.java
+    :Sch searchTerm
+</pre>
+#### all buffers
+:bufdo %s/SearchTerm/ReplacementTerm/ge | update
+#### all windows
+:windo %s/SearchTerm/ReplacementTerm/ge | update
+#### all quickfix
+:cfdo %s/SearchTerm/ReplacementTerm/ge | update
   
 ### Working with files  
 `:Files` - open fzf in current dir and search bellow  
