@@ -176,7 +176,8 @@ Numbered mark should be stored.  See |viminfo-file-marks|.
     
 ### VIM FZF  
 `Ctrl+o [file_name] Ctrl+t` - open file in new tab  
-  
+
+
 ### FOLDING HTML 
 `.vim/after/ftplugin/html.vim`
 
