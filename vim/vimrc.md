@@ -146,6 +146,10 @@ init.vimrc
     vnoremap <leader>p "0p
     vnoremap <leader>x d"0p
     
+    " Search and replace in current buffer
+    nnoremap <leader>r :%s/\<<C-r><C-w>\>//g<left><left>
+    nnoremap <leader>f :%s/\<<C-r><C-w>\>//gc<left><left><left>
+
     map <leader><leader> <Plug>(easymotion)<cr>
     " copy paste remaps
     " paste from 0 register

@@ -1,5 +1,8 @@
 <pre>
-    export FZF_DEFAULT_COMMAND="find -L"
+    # export FZF_DEFAULT_COMMAND="find -L"
+    export FZF_DEFAULT_COMMAND="fdfind --type f --strip-cwd-prefix --hidden --follow --exclude .git"
+    export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+    export FZF_ALT_C_COMMAND="fdfind -t d . $HOME"
     # ~/.bashrc: executed by bash(1) for non-login shells.
     # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
     # for examples
