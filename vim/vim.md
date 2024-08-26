@@ -9,6 +9,10 @@
   `zb` Scroll the current line to the bottom of the window      
   `Ctrl + e` Scroll down without moving cursor
   `Ctrl + y` Scroll up without moving cursor
+  `Ctrl + u` Scroll up 1/2 page
+  `Ctrl + d` Scroll down 1/2 page
+  `Ctrl + b` Scroll up 1 page cursor to last line
+  `Ctrl + f` Scroll down 1 page cursor to first line
 ### VIM GIT 
 [FUGITIVE](https://dzx.fr/blog/introduction-to-vim-fugitive/)
 ### VIM SURROUND    
