@@ -50,6 +50,7 @@
 `:m0`       - move current line to line 0 (i.e. the top of the document)      
 `:.,+3m$-1` - current line through current+3 are moved to the lastLine-1 (i.e. next to last)      
 `:g/pattern/normal @q`- Run a macro on matching lines (example assuming a macro recorded as 'q'):      
+
 ### Quickfix list  
 `:copen` - Open the quickfix list window.    
 `:ccl` or :cclose - Close the quickfix list window.  
@@ -58,6 +59,7 @@
 `:cfirst` - Go to the first item on the list.  
 `:clast` - Go to the last item on the list.  
 `:cc <n>` - Go to the nth item.  
+
 ### Location List  
 `:lopen` - Open the location list window.  
 `:lcl` or :lclose - Close the location list window.  
@@ -66,6 +68,45 @@
 `:lfirst` - Go to the first item on the list.  
 `:llast` - Go to the last item on the list.  
 `:ll <n>` - Go to the nth item.
+
+### G instead OF substitute
+<pre>
+    yahoo.com has address 216.109.112.135
+    yahoo.com is address 66.94.234.13
+    google.com is IP 216.239.37.99
+    google.com has IP 216.239.57.99
+    google.com has address 216.239.39.99
+    msn.com has address 207.68.172.246
+    vhost.sourceforge.net is address 66.35.250.210
+</pre>
+
+- desired result  
+
+<pre>
+    yahoo.com 216.109.112.135
+    yahoo.com 66.94.234.13
+    google.com 216.239.37.99
+    google.com 216.239.57.99
+    google.com 216.239.39.99
+    msn.com 207.68.172.246
+    vhost.sourceforge.net 66.35.250.210
+</pre>
+
+command:  
+`:g/\d\+\.\d\+\.\d\+\.\d\+/norm f w2dw `
+
+Explanation:  
+  
+`\d\+\.\d\+\.\d\+\.\d\+`  - find lines that match ip address
+
+`/norm f w2dw ` - execute on lines matching the pattern 
+
+<pre>
+  `f<space>`  move cursor to first whitespace  
+  `w`         move to the start of first word  
+  `2dw`       delete 2 words  
+</pre>
+
 ### Macro  
 `:5,10norm! @a` - Execute the macro stored in register a on lines 5 through 10.  
 `:5,$norm! @a` - Execute the macro stored in register a on lines 5 through 10.  
@@ -73,7 +114,15 @@
 `:g/pattern/norm! @a` - Execute the macro store in register a on all lines matching pattern.  
 `:%norm! @a` - Execute the macro stored in register a on all lines.  
 `:g/pattern/norm! @a` - Execute the macro store in register a on all lines matching pattern.  
-  
+
+## Registers combination  
+`:let @d = @a . @b . @c`  
+
+register `d` is now combination of 3 registers `a`, `b` and `c`  
+
+SO command:
+`@d`    executes what is in register `a`, `b` and `c`
+
 ### Tabs    
 `gT` Go to the previous tab      
 `gt` Go to the next tab      
