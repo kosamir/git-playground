@@ -1,7 +1,6 @@
 ### Create a new branch:  
 `git checkout -b feature_branch_name`  
-=======  
-=======  
+
 ### Create a new branch:  
 `git checkout -b feature_branch_name`  
 
@@ -21,8 +20,7 @@
 `git push <remote_name> --delete <branch_name>`  
 `git reset --hard` - deletes all local changes and resets all  
   
-## MERGE  
-  
+# MERGE  
 `git checkout master`  
 `git checkout -b new-branch`  
   
@@ -31,13 +29,50 @@
 `git add .`  
 `git commit –m "Some commit message"`  
 `git checkout master`  
-### without new commit message  
+
+#### without new commit message  
 `git merge new-branch`    
   
-### with new commit message  
+#### with new commit message  
 `git merge -no-ff new-branch -m "merging master into new-branch"`    
   
-  
+### UNDO PUSHED MERGE  
+
+`git checkout develop`  
+
+develop some code..
+
+`git commit -m "developing some code"`  
+
+push changes on remote  
+
+`git push origin develop`
+
+checkout master branch: `git checkout master`  
+
+NOW merge master into develop   `git merge develop`  
+
+push to remote `git push origin master`
+
+master branch has now all changes from develop branch  
+
+REVERTING MERGE COMMIT  
+
+`git checkout master`  
+
+`git log`
+
+find hash of merge commit you wish to UNDO  
+
+`git revert -m 1 <merge-commit> `
+
+<pre>
+    With `-m 1` we tell git to revert to the first parent of the mergecommit on the master branch. 
+    With `-m 2` would specify to revert to the first parent on the develop branch where the merge came from initially.
+</pre>  
+
+Now commit the revert and push changes to the remote repo and you are done.
+
 # GIT COMMANDS  
 status git-a : `git status` | `git whatchanged`    
 list all remotes: `git remote -v`    
