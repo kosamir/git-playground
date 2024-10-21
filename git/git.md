@@ -8,6 +8,9 @@
 
 `git push -u origin origin/feature_branch_name`  
 
+### RENAME BRANCH
+`git branch -m old-branch_name new-branch_name`
+
 #### DELETE BRANCH
 `git branch -d branch_name`  
 `git branch -D branch_name`  
@@ -18,6 +21,29 @@
 #### DELETE BRANCH ON REMOTE  
 `git push <remote_name> --delete <branch_name>`  
 `git reset --hard` - deletes all local changes and resets all  
+
+
+# STASHING  
+
+### STASH  
+`git stash -u` - stash with included untracked changes  
+`git stash -a` - stash untracked and ignored  
+`git stash push -a -m "named_stash"` - stash all with name `named_stash`  
+
+
+### STASH APPLY  
+`git stash apply` - retrieve changes from the stash and apply them to your branch  
+`git stash apply stash@{2}` - apply 2nd change from git stash  
+`git stash apply stash^{/named_stash}` - apply named stash  
+
+### STASH DROP  
+`git stash drop <name>`  - drop name stash
+
+### STASH LIST  
+`git statsh list` - list stash
+
+### STASH CLEAR  
+`git stash clear` - clear all stash  
   
 # MERGE  
 `git checkout master`  
