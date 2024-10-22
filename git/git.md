@@ -102,6 +102,7 @@ Now commit the revert and push changes to the remote repo and you are done.
 status git-a : `git status` | `git whatchanged`    
 list all remotes: `git remote -v`    
 add remote: `git remote add my_awesome_new_remote_repo git@git.assembla.com:portfolio/space.space_name.git`    
+count num of commits on current branch: `git log --pretty=oneline | wc -l`
   
 novi branch: `git branch [new _branch]`    
 mjenjanje branch-a: `git checkout [new_branch]`    
@@ -115,7 +116,16 @@ push new branch on remote: `git push origin new_branch`
 brisanje grane na remote-u: `git push <remote_name> --delete <branch_name>`     
   
 undoing changes:  `git revert [id_commita]`    
-  
+
+# CLEAR ALL GIT HISTORY
+<pre>
+    git checkout --orphan tmp-master # create a temporary branch
+    git add -A  # Add all files and commit them
+    git commit -m 'Add files'
+    git branch -D master # Deletes the master branch
+    git branch -m master # Rename the current branch to master
+    git push -f origin master # Force push master branch to Git server 
+</pre>
   
 # REWRITING HISTORY OF GIT I.E SOFT RESET
 - move head 20 commits in the past
