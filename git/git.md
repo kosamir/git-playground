@@ -22,6 +22,10 @@
 `git push <remote_name> --delete <branch_name>`  
 `git reset --hard` - deletes all local changes and resets all  
 
+# TAG
+`git tag -a <TAG_NAME>`  
+`git push origin <TAG_NAME>`  
+
 
 # STASHING  
 
