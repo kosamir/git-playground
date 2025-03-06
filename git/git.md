@@ -3,6 +3,9 @@
 ### CREATE A NEW BRANCH:  
 `git checkout -b feature_branch_name`  
 
+### TRACK BRANCH
+`git branch --set-upstream-to=<remote/branch name>
+`
 - Edit, add and commit your files.  
 - Push your branch to the remote repository:  
 
