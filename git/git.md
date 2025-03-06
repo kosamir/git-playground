@@ -3,6 +3,9 @@
 ### CREATE A NEW BRANCH:  
 `git checkout -b feature_branch_name`  
 
+### TRACK BRANCH
+`git branch --set-upstream-to=<remote/branch name>
+`
 - Edit, add and commit your files.  
 - Push your branch to the remote repository:  
 
@@ -26,6 +29,23 @@
 `git tag -a <TAG_NAME>`  
 `git push origin <TAG_NAME>`  
 
+# REBASING WITH FUGITIVE
+
+`:G log --oneline`  
+- position on commit that you want to edit:  
+    - `rm` - edit commit contents (adding new files to commit editing existing files in commit)
+    - `rw` - edit JUST commit message
+- save buffer with `ZZ`
+- open file in commit that you want to add/change or whatever - change the file
+- stage file with `S`
+- `cvc` - commit with verbose
+- edit commit comments
+- save buffer `:w`  
+- `rr` - continue with current rebase  
+- `:G push -f`  
+- if push fails first resolve conflicts and then 
+    `:G push -f`  
+again
 
 
 # STASHING  
