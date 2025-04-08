@@ -11,9 +11,9 @@
         set -g @resurrect-strategy-nvim 'session'
 
 `tmux-resurrect` will now restore vim and neovim sessions if `Session.vim` file
-is present.
+is present.  
 
-### Restore sessions
+### Restore sessions  
 - `tmux`
 - `Ctrl+a Ctrl+s` - save tmux session
 - `Ctrl+a Ctrl+r` - restore last saved session
@@ -47,7 +47,9 @@ Default prefix: `^a`
 * Attach to a session: `tmux attach -t NAME`
 * Detach current session: `^b d`
 * Rename current session: `^b $`
-* Saving sessions and restoring sessions a reboot:<br> I don't think this is a standard tmux feature. Here are some projects to check out that provide this functionality: [tmuxinator](https://github.com/tmuxinator/tmuxinator), [tmux-resurrect](https://github.com/tmux-plugins/tmux-resurrect), or [plain old bash scripts](http://pogidude.com/2014/bash-script-to-restore-tmux-session-after-reboot/)
+* Saving sessions and restoring sessions a reboot:<br> 
+
+I don't think this is a standard tmux feature. Here are some projects to check out that provide this functionality: [tmuxinator](https://github.com/tmuxinator/tmuxinator), [tmux-resurrect](https://github.com/tmux-plugins/tmux-resurrect), or [plain old bash scripts](http://pogidude.com/2014/bash-script-to-restore-tmux-session-after-reboot/)
 
 ### Windows
 
