@@ -1,8 +1,8 @@
-### help za konfiguraciju graficke kartice na monitorima
-`xrandr -q` - ovo vraca sve spojene monitora na graficku karticu
-
-### primjer
-`xrandr -q`  
+### help za konfiguraciju graficke kartice na monitorima  
+`xrandr -q` - ovo vraca sve spojene monitora na graficku karticu  
+  
+### primjer  
+`xrandr -q`    
 
 `
 - Screen 0: minimum 8 x 8, current 7680 x 4320, maximum 32767 x 32767  
@@ -139,23 +139,23 @@
 - LG monitor
 `xrandr --output DP-1.2 --mode 3840x2160 --pos 3840x0`  
 
-### Troubleshooting
-
- uglavnom odes u tty(ctrl + alt + F1 ili neki drug F) logiras se i opalis:
+### Troubleshooting  
+  
+ uglavnom odes u tty(ctrl + alt + F1 ili neki drug F) logiras se i opalis:  
 
     `
         sudo rm /etc/X11/xorg.conf
         systemctl restart gdm
     `
 
-To mu je pravi elektrosok.. stilta se do kraja 
-
-Inace pozicije monitora drzi u fajlu `./config/montors.xml` a taj file se azurira svaki puta kad nesto po monitorima (rezolucije, pozicije itd) drkas
-
-
- Uglavnom
-shema je iz tog `monitor.xml-a` rekonstuirat shell skriptu koja ce ti se izvrtiti prilikom login-a i namjestiti ti monitore zavisno o tome gdje si se prikopcao..
-Primjer moje shell skripte koja namjesta monitore:
+To mu je pravi elektrosok.. stilta se do kraja   
+  
+Inace pozicije monitora drzi u fajlu `./config/montors.xml` a taj file se azurira svaki puta kad nesto po monitorima (rezolucije, pozicije itd) drkas  
+  
+  
+ Uglavnom  
+shema je iz tog `monitor.xml-a` rekonstuirat shell skriptu koja ce ti se izvrtiti prilikom login-a i namjestiti ti monitore zavisno o tome gdje si se prikopcao..  
+Primjer moje shell skripte koja namjesta monitore:  
 `
 
 #!/bin/bash
@@ -198,4 +198,4 @@ elif [ $COUNT -eq "2" ]; then
 fi
 
 `        
-ovo `--output` nazivlje... dobijes kad opalis xrandr komadnu u terminalu..
+ovo `--output` nazivlje... dobijes kad opalis xrandr komadnu u terminalu..  
