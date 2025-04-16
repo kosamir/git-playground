@@ -1,5 +1,5 @@
 # XARGS     
-[ https://www.everythingcli.org/find-exec-vs-find-xargs/ ]( https://www.everythingcli.org/find-exec-vs-find-xargs/ )
+[https://shapeshed.com/unix-xargs/](https://shapeshed.com/unix-xargs/)
 
 `xargs [OPTIONS] [COMMAND [initial-arguments]]`  
 
