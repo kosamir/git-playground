@@ -70,7 +70,7 @@
 `:ll <n>` - Go to the nth item.  
   
 ### G instead OF substitute  
-<pre>  
+
     yahoo.com has address 216.109.112.135  
     yahoo.com is address 66.94.234.13  
     google.com is IP 216.239.37.99  
@@ -78,11 +78,9 @@
     google.com has address 216.239.39.99  
     msn.com has address 207.68.172.246  
     vhost.sourceforge.net is address 66.35.250.210  
-</pre>  
   
 - desired result    
   
-<pre>  
     yahoo.com 216.109.112.135  
     yahoo.com 66.94.234.13  
     google.com 216.239.37.99  
@@ -90,7 +88,6 @@
     google.com 216.239.39.99  
     msn.com 207.68.172.246  
     vhost.sourceforge.net 66.35.250.210  
-</pre>  
   
 command:    
 `:g/\d\+\.\d\+\.\d\+\.\d\+/norm f w2dw `  
@@ -101,11 +98,9 @@ Explanation:
   
 `/norm f w2dw ` - execute on lines matching the pattern   
   
-<pre>  
   `f<space>`  move cursor to first whitespace    
   `w`         move to the start of first word    
   `2dw`       delete 2 words    
-</pre>  
   
 ### Macro    
 `:5,10norm! @a` - Execute the macro stored in register a on lines 5 through 10.    
@@ -114,10 +109,13 @@ Explanation:
 `:g/pattern/norm! @a` - Execute the macro store in register a on all lines matching pattern.    
 `:%norm! @a` - Execute the macro stored in register a on all lines.    
 `:g/pattern/norm! @a` - Execute the macro store in register a on all lines matching pattern.    
+
+### Macro Visualy   
+`:'<,'>norm! @a` - Execute the macro store in register a on all lines visualy selected.    
   
-## Registers combination    
+## Registers ( combination )    
 `:let @d = @a . @b . @c`    
-  
+
 register `d` is now combination of 3 registers `a`, `b` and `c`    
   
 SO command:  
@@ -140,53 +138,43 @@ SO command:
       
 ### Jump to definition    
 `gd`- will take you to the local declaration.    
-`gD`- will take you to the global declaration.    
+`gD`- will take you to the global declaration in new TAB.    
 `g*`- search for the word under the cursor (like *, but g* on 'rain' will find words like 'rainbow').    
-`g#`- same as g* but in backward direction.    
+`g#`- same as `g*` but in backward direction.
 `gg`- goes to the first line in the buffer (or provide a count before the command for a specific line).    
 `G` - goes to the last line (or provide a count before the command for a specific line).    
 `gf`- will go to the file under the cursor    
 `g]`- and other commands will jump to a tag definition (a tag can be a function or variable name, or more).    
     
-### CTAGS    
+### CTAGS  
 `ctags --languages=java -R ./src` - generate tags file in src folder    
     
 ### Marks      
-```      
 'a - 'z		lowercase marks, valid within one file        
 'A - 'Z		uppercase marks, also called file marks, valid between files        
 '0 - '9		numbered marks, set from .viminfo file        
-```      
       
-`      
 Lowercase marks 'a to 'z are remembered as long as the file remains in the        
 buffer list.  If you remove the file from the buffer list, all its marks are        
 lost.  If you delete a line that contains a mark, that mark is erased.        
-`      
       
-`      
 Lowercase marks can be used in combination with operators.  For example: "d't"        
 deletes the lines from the cursor position to mark 't'.  Hint: Use mark 't' for        
 Top, 'b' for Bottom, etc..  Lowercase marks are restored when using undo and        
 redo.      
-`      
       
-`      
 Uppercase marks 'A to 'Z include the file name.  You can use them to jump from      
 file to file.  You can only use an uppercase mark with an operator if the mark      
 is in the current file.  The line number of the mark remains correct, even if      
 you insert/delete lines or edit another file for a moment.  When the 'viminfo'      
 option is not empty, uppercase marks are kept in the .viminfo file.  See      
 |viminfo-file-marks|.      
-`      
       
-`    
 Numbered marks '0 to '9 are quite different.  They can not be set directly.      
 They are only present when using a viminfo file |viminfo-file|.  Basically '0      
 is the location of the cursor when you last exited Vim, '1 the last but one      
 time, etc.  Use the "r" flag in 'viminfo' to specify files for which no      
 Numbered mark should be stored.  See |viminfo-file-marks|.      
-`    
     
 `mk` -  mark the current position as k (any other lowercase letter will do)      
 `mK` -  mark the current position as K. Uppercase means that it is a global mark, and it will be available even if you currently have a different file opened.      
@@ -194,15 +182,23 @@ Numbered mark should be stored.  See |viminfo-file-marks|.
 `delmarks A-Z0-9` - delete all marks      
   
 ### Search and replace in all buffers  
-<pre>  
-    :vimgrep /SearchTerm/ *.tsx  
-    :vimgrep /SearchTerm/ *.java  
+
+    `:vimgrep /SearchTerm/ **/*.tsx`
+search form SearchTerm in this folder and parrent folder on all files ending with `.tsx`  
+    `:vimgrep /Search*/ **/*.java`  
+search for word that starts with Search in this folder and parrent folder on all files ending with `.java`
+
+custom search in my vimrc searches all git files for `searchTerm`
     :Sch searchTerm  
-</pre>  
+
+- https://dev.to/iggredible/vimgrep-tips-and-tricks-54pl
+
 #### all buffers  
 :bufdo %s/SearchTerm/ReplacementTerm/ge | update  
+
 #### all windows  
 :windo %s/SearchTerm/ReplacementTerm/ge | update  
+
 #### all quickfix  
 :cfdo %s/SearchTerm/ReplacementTerm/ge | update  
     
