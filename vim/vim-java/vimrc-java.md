@@ -10,16 +10,20 @@ vim plugini funkcionirali
 - primjer `.vimrc` u java  projektu
 
  
-<pre>
     source $HOME/.vim/languages/java.vimrc
     set path+=.,/home/amirkos/git/pravila/dicu-be/**,/usr/lib/jvm/openjdk-8/src.zip
     let g:ale_java_javac_executable = "javac -cp ~/.m2/repository/org/projectlombok/lombok/1.18.8/lombok-1.18.8.jar"
-</pre>
 
+## lombok da bi radio treba ovo dodat u coc-settings.json
+- vazno ovo je mjesto gdje se definiraju stvari sve.. i onda jdtls ili neki drugi lang server to poKupi od tuda  
+
+`.vim/coc-settings.json`
+    {
+        "java.jdt.ls.vmargs": "-javaagent:/usr/local/share/lombok/lombok-1.18.6.jar -Xbootclasspath/a:/usr/local/share/lombok/lombok-1.18.6.jar"
+    }
 
 - primjer `$HOME/.vim/languages/java.vimrc`
 
-<pre>
     nnoremap <C-f>  :CocCommand editor.action.formatDocument <CR>
     nnoremap <C-b>  :call CocActionAsync('runCommand', 'editor.action.organizeImport')<CR>
     
@@ -55,5 +59,4 @@ vim plugini funkcionirali
     inoremap <expr> k ((coc#pum#visible())?(coc#pum#prev(0)):("k"))
     inoremap <expr> <CR> ((coc#pum#visible())?(coc#pum#confirm()):("<CR>"))
     inoremap <expr> <Esc> ((coc#pum#visible())?(coc#pum#cancel()):("<Esc>"))
-</pre>
 
