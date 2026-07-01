@@ -1,9 +1,48 @@
 #FD
 
+Usage: fd [OPTIONS] [pattern [path]...]
+
+Arguments:
+  [pattern]  the search pattern (a regular expression, unless '--glob' is used; optional)
+  [path]...  the root directories for the filesystem search (optional)
+
+Options:
+  -H, --hidden                     Search hidden files and directories
+  -I, --no-ignore                  Do not respect .(git|fd)ignore files
+  -s, --case-sensitive             Case-sensitive search (default: smart case)
+  -i, --ignore-case                Case-insensitive search (default: smart case)
+  -g, --glob                       Glob-based search (default: regular expression)
+  -a, --absolute-path              Show absolute instead of relative paths
+  -l, --list-details               Use a long listing format with file metadata
+  -L, --follow                     Follow symbolic links
+  -p, --full-path                  Search full abs. path (default: filename only)
+  -d, --max-depth <depth>          Set maximum search depth (default: none)
+  -E, --exclude <glob>             Exclude entries that match the given glob pattern
+  -t, --type <filetype>            Filter by type: file (f), directory (d/dir), symlink (l),
+                                   executable (x), empty (e), socket (s), pipe (p), char-device
+                                   (c), block-device (b)
+  -e, --extension <ext>            Filter by extension
+  -S, --size <size>                Limit results based on the size of files
+      --changed-within <date|dur>  Filter by file modification time (newer than)
+      --changed-before <date|dur>  Filter by file modification time (older than)
+  -o, --owner <user:group>         Filter by owning user and/or group
+      --format <fmt>               Print results according to template
+  -x, --exec <cmd>...              Execute a command for each search result
+  -X, --exec-batch <cmd>...        Execute a command with all search results at once
+  -c, --color <when>               When to use colors [default: auto] [possible values: auto,
+                                   always, never]
+      --hyperlink[=<when>]         Add hyperlinks to output paths [default: never] [possible
+                                   values: auto, always, never]
+      --ignore-contain <name>      Ignore directories containing the named entry
+  -h, --help                       Print help (see more with '--help')
+  -V, --version                    Print version
+
+
+###EXAMPLES
+
 find markdown files on _docs folder 
 
 `fd -e md /_docs` 
-
 
 find file with kubernetes prefix on ~/Documents  
 
@@ -18,7 +57,8 @@ Count lines number of markdown files on current directory.
 ###EXAMPLES
 
 find all hidden files wich starts with `.vim*.tmp` and ends with `.tmp` in current directory  
-
-
 `fd -H -g '.vim*.tmp' .`
+
+find files containig word service in `./config/systemd` folder  
+`fdfind service '.config/systemd/'`
 

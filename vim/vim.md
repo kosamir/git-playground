@@ -14,6 +14,7 @@
   `Ctrl + d` Scroll down 1/2 page  
   `Ctrl + b` Scroll up 1 page cursor to last line  
   `Ctrl + f` Scroll down 1 page cursor to first line  
+
 ### VIM GIT   
 [FUGITIVE](https://dzx.fr/blog/introduction-to-vim-fugitive/)  
 ### VIM SURROUND      
@@ -71,7 +72,6 @@
 `:ll <n>` - Go to the nth item.  
   
 ### G instead OF substitute  
-
     yahoo.com has address 216.109.112.135  
     yahoo.com is address 66.94.234.13  
     google.com is IP 216.239.37.99  
@@ -103,6 +103,25 @@ Explanation:
   `w`         move to the start of first word    
   `2dw`       delete 2 words    
   
+
+`:g/pattern/command` --match
+`:v/pattern/command` --inverse match
+<pre>
+    const one = 1;
+    console.log("one: ", one);
+
+    const two = 2;
+    console.log("two: ", two);
+
+    const three = 3;
+    console.log("three: ", three);
+</pre>
+
+`:g/console/d` - remove ALL lines containing word cosole  
+`:g/[0-9]/d` - remove ALL lines containing single digit
+`:v/[0-9]/d` - remove ALL lines NOT containing single digit
+
+
 ### Macro    
 `:5,10norm! @a` - Execute the macro stored in register a on lines 5 through 10.    
 `:5,$norm! @a` - Execute the macro stored in register a on lines 5 through 10.    
@@ -223,6 +242,14 @@ custom search in my vimrc searches all git files for `searchTerm`
 `nmap <leader>P "+P`      
 `vmap <leader>p "+p`      
 `vmap <leader>P "+P`      
+
+### YANK to register  
+
+Enter visual mode and select text you want to copy to register
+
+`"ay` - yank contents of selected text to register a
+`"ap` - paste contents of selected text 
+
       
 ### VIM FZF    
 `Ctrl+o [file_name] Ctrl+t` - open file in new tab    
