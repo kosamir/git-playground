@@ -17,6 +17,7 @@
 
 ### VIM GIT   
 [FUGITIVE](https://dzx.fr/blog/introduction-to-vim-fugitive/)  
+[ FUGITIVE SHORTCUTS ](https://drive.google.com/file/d/1UlzHREqgNQHC2gWl_s-tVxyrAC7TjYiW/view?usp=drivesdk)
 ### VIM SURROUND      
 - Edition magic        
   `ysiw'` - surronund current word with '        
