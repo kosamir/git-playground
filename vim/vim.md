@@ -3,6 +3,7 @@
 `gcc` - comment out a line      
 `gc` - in visual mode comments out selection      
 <!-- ovo je jos jedan komentar -->  
+<!-- ovo je jos jedan komentar kad sam rebezao-->  
 ### VIM SCROLLING  
   `zz` Scroll the current line to the center of the window        
   `zt` Scroll the current line to the top of the window        
