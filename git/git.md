@@ -1,5 +1,9 @@
 # BRANCHING
 
+### VIM FUGITIVE  
+[FUGITIVE](https://dzx.fr/blog/introduction-to-vim-fugitive/)  
+[ FUGITIVE SHORTCUTS ](https://drive.google.com/file/d/1UlzHREqgNQHC2gWl_s-tVxyrAC7TjYiW/view?usp=drivesdk)
+
 ### CREATE A NEW BRANCH:  
 `git checkout -b feature_branch_name`  
 
